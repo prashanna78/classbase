@@ -1,0 +1,43 @@
+{% extends 'base/index.html' %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="text-center"> Student List </div>
+    </div>
+    <div class="container">
+        <form method ="GET">
+            <h3> Search </h3>
+            <input type="text" name="d" placeholder="Enter your query" value="{{ request.GET.s }}">
+        </form>
+    </div>
+    <div class="container">
+        <br><br>
+        <div class="row justify-content-around">
+            <table>
+                <thead>
+                    <tr>
+                        <th> Name </th>
+                        <th> Address </th>
+                        <th> Email </th>
+                        <th> Action </th>
+
+                    </tr>
+                    {% for std in student_list %}
+                    <tr>
+                        <td> {{ std.name }} </td>
+                        <td> {{ std.address }} </td>
+                        <td> {{ std.email }} </td>
+                        <td><a href="{% url 'student:update' std.id %}" class="btn btn-info"> Edit </a></td>
+
+                        <td><a href="{% url 'student:delete' std.id %}" class="btn btn-danger"> Delete </a></td>
+                    </tr>
+                    {% endfor %}
+                </thead>
+            </table>
+            <a href="{% url 'student:registers' %}" class="btn btn-primary"> Add Student</a>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

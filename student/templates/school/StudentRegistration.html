@@ -1,0 +1,19 @@
+{% extends 'base/index.html'%}
+{% load crispy_forms_tag %}
+{% block content %}
+<h3> Regsiter Form </h3>
+
+<form method = "POST" action="">
+    {% csrf_token %}
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-success" role ="alert">
+                {{ message }}
+            </div>
+
+        {% endfor %}
+    {% endif %}
+    {{ form|crispy }}
+    <input type="submit" value="Register" class="btn btn-success">
+</form>
+{% endblock content %} 
