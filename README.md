@@ -1,0 +1,2 @@
+# classbase
+random
