@@ -9,6 +9,7 @@ class School(models.Model):
     email = models.EmailField(default='abc@gmail.com')
     address = models.CharField(max_length = 100)
     address1 = models.CharField(max_length = 150)
+    address2 = models.CharField(max_length = 150)
 
     def __str__(self):
         return self.name
