@@ -1,0 +1,11 @@
+{% extends 'base/index.html' %}
+{% block content%}
+
+<h3> School form </h3>
+
+<form method="POST" action="">
+ {% csrf_token %}
+ {{ form }}
+</form>
+
+{% endblock%}

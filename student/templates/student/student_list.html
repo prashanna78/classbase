@@ -1,0 +1,81 @@
+{% extends 'base/index.html' %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        
+        <div class="text-center"> Student List </div>
+    </div>
+    <div class="container">
+        <form method ="GET">
+            <h3> Search </h3>
+            <input type="text" name="search_query" placeholder="Enter your query" value="{{ request.GET.s }}" style="color:black;">
+        </form>
+    </div>
+    <div class="container">
+        <br><br>
+        <div class="row justify-content-around">
+            <table>
+                <thead>
+                    <tr>
+                        <th> Name </th>
+                        <th> Address </th>
+                        <th> Email </th>
+                        <th> School </th>
+                        <th> Action </th>
+
+                    </tr>
+                    {% for std in student_list %}
+                    <tr>
+                        <td> {{ std.name }} </td>
+                        <td> {{ std.address }} </td>
+                        <td> {{ std.email }} </td>
+                        <td> {{ std.school }} </td>
+                        <td><a href="{% url 'student:student-update' std.id %}" class="btn btn-info"> Edit </a></td>
+
+                        <td><a href="{% url 'student:student-delete' std.id %}" class="btn btn-danger"> Delete </a></td>
+                    </tr>
+                    {% endfor %}
+                </thead>
+            </table>
+
+            <a href="{% url 'student:student-registers' %}" class="btn btn-primary"> Add Student</a>
+        </div>
+    </div>
+</div>
+<div class="pagination">  
+     <span class="step-links">
+         {% if page_obj.has_previous %}
+         <a href="?page=1">; first</a>
+         <a href="?page= {{ page_obj.previous_page_number}}">previous</a>
+          {% endif%}
+
+          <span class="current">
+              page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+          </span>
+
+          {% if page_obj.has_next %}
+          <a href="?page={{ page_obj.next_page_number}}">next</a>
+          <a href="?page={{ page_obj.paginator.num_pages }}"> last </a>
+
+          {% endif %}
+     </span>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+{% endblock content %}  
